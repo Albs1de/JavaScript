@@ -9,6 +9,7 @@
 .newDiv
 {
     background-color: rgb(66, 192, 161);
+    border: 5px solid yellowgreen;
     
 }
 
@@ -17,19 +18,25 @@
     position: fixed;
     left: 50%;
     top: 30%;
-
+    border: 2px solid red;
 }
 
 .newBook
 {
     background-color: blanchedalmond;
     position: fixed;
-    flex-direction: column;
+   
+    border: 2px solid rgb(0, 251, 255);
+    display: flex;
+    
+    gap: 10px;
+    justify-content: space-between;
 
 }
 .card
 {
     position: fixed;
     top: 50%;
+    
 
 }

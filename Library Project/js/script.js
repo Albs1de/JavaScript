@@ -59,4 +59,26 @@ function hideCard()
         hideDiv.style.display = "none";
     }
 }
+document.body.onload = createBook;
+const addNewBook = document.getElementById("addNewBook");
+addNewBook.addEventListener('click', createBook);
+//Create new Div block with new book properties
+function createBook()
+{
+    
+    const newDiv = document.createElement("div");
+    newDiv.setAttribute("flex-direction", "column");
+    newDiv.setAttribute('background-color', 'black');
+    //create Elements
+    const newTitles = document.createTextNode(newTitle.value);
+    const newAuthors = document.createTextNode(newAuthor.value);
+    const newPage = document.createTextNode(newPages.value);
 
+    // add elements to newDiv
+    newDiv.appendChild(newTitles);
+    newDiv.appendChild(newAuthors);
+    newDiv.appendChild(newPage);
+    // add the newly created element + content to the DOM
+    const currentDiv = document.getElementById("newBook");
+   document.body.insertBefore(newDiv, currentDiv);
+}
