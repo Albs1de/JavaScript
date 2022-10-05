@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Library</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <script type="text/javascript" src="../js/script.js"></script>
+        <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <h1>My Library</h1> 
+        <button onclick="hideCard()" type="button" class="btn btn-primary btn-lg">+ Add Book</button>
+        <div class="div1">
+            <div id="newDiv">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Add new Book</h5>
+                      <p class="card-text"> <form>
+                        <label for="nTitle">Title:</label><br>
+                        <input type="text" id="nTitle" name="nTitle"><br>
+                        <label for="nAuthor">Author: </label><br>
+                        <input type="text" id="nAuthor" name="nAuthor"><br>
+                        <label for="nPages">Pages:</label><br>
+                        <input type="text" name="nPages" id="nPages"><br>
+                       </form></p>
+                    </div>
+                    <div class="card-body">
+                      <a href="#" class="card-link">Delete Book</a>
+                      <a href="#" class="card-link">Add Book</a>
+                    </div>
+                  </div>
+    
+            </div> 
+        </div>
+        <div class="newBook">
+            <form>
+                <label for="book-Title">Title</label><br>
+                <label for="book-Author">Author</label><br>
+                <label for="book-Pages">Pages</label><br>
+               
+            </form>
+        </div>
+    </body>
+</html>

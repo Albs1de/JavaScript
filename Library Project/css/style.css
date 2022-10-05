@@ -1,0 +1,35 @@
+.btn
+{
+    background-color: rgb(148, 216, 193);
+
+    position: fixed;
+    left: 50%;
+}
+
+.newDiv
+{
+    background-color: rgb(66, 192, 161);
+    
+}
+
+.div1
+{
+    position: fixed;
+    left: 50%;
+    top: 30%;
+
+}
+
+.newBook
+{
+    background-color: blanchedalmond;
+    position: fixed;
+    flex-direction: column;
+
+}
+.card
+{
+    position: fixed;
+    top: 50%;
+
+}
