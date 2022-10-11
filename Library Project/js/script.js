@@ -18,16 +18,11 @@ let newPages = document.getElementById("nPages");
 function addBookToLibrary()
 {
    
-   const newBook = new Book(newTitle, newAuthor, newPages);
+   const newBook = new Book(newTitle.value, newAuthor.value, newPages.value);
     myLibrary.push(newBook);
-
-
 }
 
-addBookToLibrary("Harry Potter", "Stephen King", 74);
-addBookToLibrary("Herr der Ringe", "R.L Stine", 444);
-console.log(myLibrary);
-//console.log(myLibrary[1]);
+
 
 
 //Add a function that loops through the array and display each book on the page.
@@ -40,8 +35,7 @@ function loopArray()
     }
 }
 
-loopArray();
-loopArray();
+
 //* TODO Add a "new book"-Button that brings up a form allowing users to input the details for the new book and whether its been read etc.
 
 //* TODO Add a button that remove the book from the library
@@ -65,6 +59,7 @@ function hideCard()
 document.body.onload = createBook;
 const addNewBook = document.getElementById("addNewBook");
 addNewBook.addEventListener('click', createBook);
+
 //Create new Div block with new book properties
 function createBook()
 {
@@ -72,8 +67,12 @@ function createBook()
     const newBaseDiv = document.createElement("div");
     const newDivItems = document.createElement("div");
     const currentDiv = document.getElementById("newBook");
+
     //set attributes from newDivItems
     currentDiv.style.flexDirection = "row";
+    newDivItems.classList.add("card");
+    newDivItems.style = "width: 18rem";
+    
     //create Elements
     const newTitles = document.createTextNode(newTitle.value + " ");
     const newAuthors = document.createTextNode(newAuthor.value + " ");
@@ -81,14 +80,13 @@ function createBook()
 
     // add elements to newBaseDiv
     newDivItems.appendChild(newTitles);
-    
     newDivItems.appendChild(newAuthors);
-    
     newDivItems.appendChild(newPage);
-
     currentDiv.appendChild(newDivItems);
+
+    //add new Book to Array after creating book
     addBookToLibrary();
+
     // add the newly created element + content to the DOM
-    
    document.body.insertBefore(newDivItems, currentDiv);
 }
