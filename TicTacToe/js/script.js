@@ -24,10 +24,11 @@ const gameBoard = (() => {
 
     // Eventlistener for setting marker!
     square.addEventListener("click", function () {
-      const markerText = "1";
+      const markerText = "X";
       const startText = " ";
       if (square.innerHTML == startText && square.innerHTML != markerText) {
-        square.innerHTML = "2";
+        square.innerHTML = Game.activePlayer.marker;
+        //Player.activePlayer = false;
       } else {
         square.innerHTML = markerText;
       }
@@ -47,12 +48,22 @@ const gameBoard = (() => {
 })();
 
 // * Players also as Objects
-const Player = function (name, marker) {
-  let player = {};
-  player.name = name;
-  player.marker = marker;
-  return player;
+const Player = (name, marker) => {
+  return { name, marker };
 };
+
+const Gameplay = (() => {
+  // declarate new Players
+  const playerOne = Player("Player 1 ", "X");
+  const playerTwo = Player("Player 2", "O");
+
+  //starting Point
+  let activePlayer = playerOne;
+
+  return {
+    activePlayer,
+  };
+})();
 // * Object to control the flow of the game itself
 
 // Function that allow players to add marks to a specific spot
