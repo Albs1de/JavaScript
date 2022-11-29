@@ -22,16 +22,19 @@ const gameBoard = (() => {
 
     squares.appendChild(square);
 
-    // Eventlistener for setting marker!
-    square.addEventListener("click", function () {
-      const markerText = "X";
-      const startText = " ";
-      if (square.innerHTML == startText && square.innerHTML != markerText) {
-        square.innerHTML = Game.activePlayer.marker;
-        //Player.activePlayer = false;
-      } else {
-        square.innerHTML = markerText;
-      }
+    Array.from(squares.children).forEach((square, index) => {
+      // Eventlistener for setting marker!
+      square.addEventListener("click", function () {
+        const startText = " ";
+        if (square.innerHTML == startText) {
+          square.innerHTML = Gameplay.activePlayer.marker;
+          square.style.pointerEvents = "none";
+          board[index] = Gameplay.activePlayer.marker;
+          console.log(board[index]);
+          Gameplay.nextPlayer();
+          Gameplay.checkWinner();
+        }
+      });
     });
   });
 
@@ -45,6 +48,9 @@ const gameBoard = (() => {
 
   console.log("Board[0] = " + board[0]);
   console.log("Board[1] = " + board[1]);
+  return {
+    board,
+  };
 })();
 
 // * Players also as Objects
@@ -60,8 +66,41 @@ const Gameplay = (() => {
   //starting Point
   let activePlayer = playerOne;
 
+  // winning conditions
+  const winningAxes = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  function checkWinner() {
+    for (let i = 0; i < winningAxes.length; i++) {
+      if (
+        gameBoard.board[i] === this.activePlayer.marker &&
+        gameBoard.board[i + 1] === this.activePlayer.marker &&
+        gameBoard.board[i + 2] === this.activePlayer.marker
+      ) {
+        console.log("Der Gewinner ist: " + this.activePlayer.name);
+      }
+    }
+  }
+  // next player
+  function nextPlayer() {
+    if (this.activePlayer === playerOne) {
+      this.activePlayer = playerTwo;
+    } else {
+      this.activePlayer = playerOne;
+    }
+  }
   return {
     activePlayer,
+    nextPlayer,
+    checkWinner,
   };
 })();
 // * Object to control the flow of the game itself
