@@ -1,10 +1,9 @@
+import { siteTemplate } from "./template";
+
 export default function createHome() {
-  const getDiv = document.querySelector("#content");
+  const home = document.querySelector("#Home");
 
-  const firstP = document.createElement("p");
-  firstP.innerHTML = "Ich komme vom Home.js";
-  getDiv.appendChild(firstP);
-
-  document.body.appendChild(getDiv);
-  return getDiv;
+  homeTab.addEventListener("click", () => {
+    updateContent("<p>This is the Home Tab Content!</p>");
+  });
 }

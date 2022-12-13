@@ -1,7 +1,7 @@
 import createHome from "./home.js";
-import siteTemplate from "./template";
-
+import siteTemplate from "./template.js";
 import "./style.css";
+
 function component() {
   const currentDiv = document.querySelector("#content");
   const element = document.createElement("div");
