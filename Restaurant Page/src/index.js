@@ -1,5 +1,6 @@
 import createHome from "./home.js";
 import siteTemplate from "./template.js";
+
 import "./style.css";
 
 function component() {
@@ -14,6 +15,9 @@ function component() {
   btn.onclick = createHome;
   element.appendChild(btn);
   element.appendChild(btn2);
+
+  siteTemplate();
+  createHome();
   return element;
 }
 

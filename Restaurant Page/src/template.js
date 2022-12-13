@@ -7,7 +7,8 @@ export default function siteTemplate() {
   // create tab Bar
   const homeTab = document.createElement("div");
   homeTab.classList.add("tabElement");
-  homeTab.setAttribute("id", "Home");
+  homeTab.setAttribute("id", "HomeTab");
+  //homeTab.setAttribute("id", "Home");
 
   const menuTab = document.createElement("div");
   menuTab.classList.add("tabElement");
@@ -46,10 +47,9 @@ export default function siteTemplate() {
     contentElement.innerHTML = content;
   }
 
-  homeTab.addEventListener("click", () => {
+  /*homeTab.addEventListener("click", () => {
     updateContent("<p>This is the Home Tab Content!</p>");
-  });
-
+  });*/
   menuTab.addEventListener("click", () => {
     updateContent("<p>This is the Menu Tab Content!</p>");
   });
@@ -60,5 +60,8 @@ export default function siteTemplate() {
 
   return {
     getDiv,
+    homeTab,
+    updateContent,
+    homeBtn,
   };
 }
