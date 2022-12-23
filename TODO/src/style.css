@@ -1,4 +1,25 @@
 .hello {
   color: red;
+}
 
+.leftDiv {
+  flex-direction: column;
+}
+.leftbtnItems {
+  display: block;
+  margin: 30px;
+}
+
+.bodyDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.rightDiv {
+  margin-left: 120px;
+}
+.btnInboxContent {
+  display: block;
+  margin: 30px;
+  background-color: blueviolet;
 }
