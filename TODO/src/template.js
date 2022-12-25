@@ -80,6 +80,8 @@ const rightDiv = () => {
   rightDivTitle.textContent = "Inbox";
   rightDiv.appendChild(rightDivTitle);
 
+  rightDiv.appendChild(inboxContent());
+
   return rightDiv;
 };
 
@@ -105,7 +107,7 @@ function updateContent(content) {
 }
 
 // dynamic content for right div with Inbox
-const inboxContent = () => {
+function inboxContent() {
   const inboxContent = document.createElement("div");
   inboxContent.classList.add("inboxContent");
 
@@ -118,7 +120,7 @@ const inboxContent = () => {
   btnInboxContent.classList.add("btnInboxContent");
   btnInboxContent.textContent = "+ Add Task";
 
-  btnInboxContent.addEventListener("click", () => {
+  btnInboxContent.addEventListener("click", function addTask() {
     const newTask = document.createElement("button");
 
     newTask.classList.add("newTask");
@@ -128,7 +130,7 @@ const inboxContent = () => {
 
   inboxContent.appendChild(btnInboxContent);
   return inboxContent;
-};
+}
 
 // dynamic content for right div with Today
 const todayContent = () => {

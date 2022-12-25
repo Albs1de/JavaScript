@@ -23,3 +23,15 @@
   margin: 30px;
   background-color: blueviolet;
 }
+
+.mainDiv {
+  background-color: #eae2b7;
+}
+.inboxContent {
+  background-color: #ff1111;
+  margin: 30px;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #eae2b7;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
