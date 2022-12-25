@@ -34,7 +34,7 @@ const leftDiv = () => {
   inBoxBtn.classList.add("inboxBtn", "leftbtnItems");
   inBoxBtn.textContent = "Inbox";
   inBoxBtn.addEventListener("click", () => {
-    updateContent(inboxContent().innerHTML);
+    updateContent(inboxContent());
   });
   leftDiv.appendChild(inBoxBtn);
 
@@ -79,8 +79,7 @@ const rightDiv = () => {
 
   rightDivTitle.textContent = "Inbox";
   rightDiv.appendChild(rightDivTitle);
-
-  rightDiv.appendChild(inboxContent());
+  const getBtnInboxContent = inboxContent();
 
   return rightDiv;
 };
@@ -103,7 +102,9 @@ const addProjectBtn = () => {
 
 function updateContent(content) {
   const rightDiv = document.querySelector("#rightDiv");
-  rightDiv.innerHTML = content;
+  //rightDiv.innerHTML = content;
+  rightDiv.innerHTML = "";
+  rightDiv.appendChild(content);
 }
 
 // dynamic content for right div with Inbox
@@ -122,13 +123,13 @@ function inboxContent() {
 
   btnInboxContent.addEventListener("click", function addTask() {
     const newTask = document.createElement("button");
-
     newTask.classList.add("newTask");
     newTask.textContent = "New Task";
     inboxContent.appendChild(newTask);
   });
 
   inboxContent.appendChild(btnInboxContent);
+
   return inboxContent;
 }
 
