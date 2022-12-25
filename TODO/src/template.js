@@ -30,7 +30,7 @@ const leftDiv = () => {
   const leftDiv = document.createElement("div");
   leftDiv.classList.add("leftDiv");
 
-  const inBoxBtn = document.createElement("button");
+  /* const inBoxBtn = document.createElement("button");
   inBoxBtn.classList.add("inboxBtn", "leftbtnItems");
   inBoxBtn.textContent = "Inbox";
   inBoxBtn.addEventListener("click", () => {
@@ -66,7 +66,33 @@ const leftDiv = () => {
   projectDiv.classList.add("projectDiv");
   leftDiv.appendChild(projectDiv);
 
-  leftDiv.appendChild(addProjectBtn());
+  leftDiv.appendChild(addProjectBtn()); */
+
+  const buttons = [
+    {
+      text: "Inbox",
+      onclick: () => updateContent(inboxContent()),
+      class: "inboxBtn",
+    },
+    {
+      text: "Today",
+      onclick: () => updateContent(todayContent()),
+      class: "todayBtn",
+    },
+    {
+      text: "This Week",
+      onclick: () => updateContent(thisWeekContent()),
+      class: "thisWeekBtn",
+    },
+  ];
+  // Create for each Button element an button
+  buttons.forEach((button) => {
+    const element = document.createElement("button");
+    element.textContent = button.text;
+    element.classList.add(button.class, "leftbtnItems");
+    element.addEventListener("click", button.onclick);
+    leftDiv.appendChild(element);
+  });
   return leftDiv;
 };
 
