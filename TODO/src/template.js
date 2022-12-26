@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export default function createTemplate() {
   const mainDiv = document.createElement("body");
   mainDiv.classList.add("mainDiv");
@@ -25,48 +27,32 @@ const navBar = () => {
   navBar.appendChild(navBarText);
   return navBar;
 };
+const dateChanges = () => {
+  const dateInput = document.createElement("input");
+  dateInput.type = "date";
+  dateInput.classList.add("dateInput");
+  dateInput.addEventListener("change", () => {
+    const selectedDate = dateInput.value;
+
+    //formatiere
+    const formattedDate = format(selectedDate("dd.MM.yyyy"));
+
+    // erstelle neues Element um das formatierte Datum anzuzeigen
+    const dateElement = document.createElement("p");
+    dateElement.textContent = formattedDate;
+
+    // füge das Element in den DOM ein
+    const newTask = document.querySelector(".newElement");
+    newTask.appendChild(dateElement);
+  });
+};
 
 const leftDiv = () => {
   const leftDiv = document.createElement("div");
   leftDiv.classList.add("leftDiv");
-
-  /* const inBoxBtn = document.createElement("button");
-  inBoxBtn.classList.add("inboxBtn", "leftbtnItems");
-  inBoxBtn.textContent = "Inbox";
-  inBoxBtn.addEventListener("click", () => {
-    updateContent(inboxContent());
-  });
-  leftDiv.appendChild(inBoxBtn);
-
-  const todayBtn = document.createElement("button");
-  todayBtn.classList.add("todayBtn", "leftbtnItems");
-  todayBtn.textContent = "Today";
-  todayBtn.addEventListener("click", () => {
-    updateContent(todayContent().innerHTML);
-  });
-
-  leftDiv.appendChild(todayBtn);
-
-  const thisWeekBtn = document.createElement("button");
-  thisWeekBtn.classList.add("thisWeekBtn", "leftbtnItems");
-  thisWeekBtn.textContent = "This Week";
-  thisWeekBtn.addEventListener("click", () => {
-    updateContent(thisWeekContent().innerHTML);
-  });
-
-  leftDiv.appendChild(thisWeekBtn);
-
-  const projectTitle = document.createElement("h2");
-  projectTitle.classList.add("projectTitle");
-  projectTitle.textContent = "Projects";
-  leftDiv.appendChild(projectTitle);
-
-  // Project div
-  const projectDiv = document.createElement("div");
-  projectDiv.classList.add("projectDiv");
-  leftDiv.appendChild(projectDiv);
-
-  leftDiv.appendChild(addProjectBtn()); */
+  const leftDivTitle = document.createElement("h2");
+  leftDivTitle.classList.add("leftDivTitle");
+  leftDivTitle.textContent = "Projects";
 
   const buttons = [
     {
@@ -87,6 +73,25 @@ const leftDiv = () => {
   ];
   // Create for each Button element an button
   buttons.forEach((button) => {
+    const element = document.createElement("button");
+
+    element.textContent = button.text;
+
+    element.classList.add(button.class, "leftbtnItems");
+    element.addEventListener("click", button.onclick);
+
+    leftDiv.appendChild(element);
+  });
+  leftDiv.appendChild(leftDivTitle);
+
+  const projectBtn = [
+    {
+      text: "+ Add Project",
+      onclick: () => updateContent(addProjectBtn()),
+      class: "addProjectBtn",
+    },
+  ];
+  projectBtn.forEach((button) => {
     const element = document.createElement("button");
     element.textContent = button.text;
     element.classList.add(button.class, "leftbtnItems");
@@ -111,18 +116,18 @@ const rightDiv = () => {
 };
 
 const addProjectBtn = () => {
-  const addProjectBtn = document.createElement("button");
-  addProjectBtn.classList.add("addProjectBtn", "leftbtnItems");
-  addProjectBtn.textContent = "+ Add Project";
+  const addProjectBtns = document.createElement("button");
+  addProjectBtns.classList.add("addProjectBtn", "leftbtnItems");
+  addProjectBtns.textContent = "+ Add Project";
 
-  addProjectBtn.addEventListener("click", () => {
+  addProjectBtns.addEventListener("click", () => {
     const projectDiv = document.querySelector(".projectDiv");
     const newProject = document.createElement("button");
     newProject.classList.add("newProject", "leftbtnItems");
     newProject.textContent = "New Project";
-    projectDiv.appendChild(newProject);
   });
-
+  dateChanges();
+  addProjectBtn.appendChild(addProjectBtns);
   return addProjectBtn;
 };
 
@@ -147,11 +152,40 @@ function inboxContent() {
   btnInboxContent.classList.add("btnInboxContent");
   btnInboxContent.textContent = "+ Add Task";
 
+  const addBtn = document.createElement("button");
+  addBtn.classList.add("addBtn");
+  addBtn.textContent = "Add";
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("deleteBtn");
+  deleteBtn.textContent = "Delete";
+
   btnInboxContent.addEventListener("click", function addTask() {
-    const newTask = document.createElement("button");
-    newTask.classList.add("newTask");
-    newTask.textContent = "New Task";
-    inboxContent.appendChild(newTask);
+    const newTask = document.createElement("input");
+    newTask.classList.add("newTask", "input-group");
+    newTask.placeholder = "New Task";
+
+    //hide btnInboxContent
+    btnInboxContent.classList.add("hidden");
+
+    inboxContent.insertBefore(newTask, btnInboxContent);
+    inboxContent.insertBefore(addBtn, btnInboxContent);
+    inboxContent.insertBefore(deleteBtn, btnInboxContent);
+  });
+
+  addBtn.addEventListener("click", () => {
+    btnInboxContent.classList.remove("hidden");
+
+    const value = document.querySelector(".newTask").value;
+    const newTask = document.querySelector(".newTask");
+    const newElement = document.createElement("p");
+    newElement.textContent = value;
+    newElement.classList.add("newElement");
+
+    inboxContent.insertBefore(newElement, btnInboxContent);
+    inboxContent.removeChild(newTask);
+    inboxContent.removeChild(addBtn);
+    inboxContent.removeChild(deleteBtn);
   });
 
   inboxContent.appendChild(btnInboxContent);
@@ -167,8 +201,20 @@ const todayContent = () => {
   const todayContentTitle = document.createElement("h2");
   todayContentTitle.classList.add("todayContentTitle");
   todayContentTitle.textContent = "Today";
-  todayContet.appendChild(todayContentTitle);
 
+  const btnTodayContent = document.createElement("button");
+  btnTodayContent.classList.add("btnTodayContent");
+  btnTodayContent.textContent = "+ Add Task";
+
+  btnTodayContent.addEventListener("click", function addTask() {
+    const newTask = document.createElement("input");
+    newTask.type = "text";
+    newTask.classList.add("newTask", "input-group");
+    newTask.placeholder = "New Task";
+    todayContet.insertBefore(newTask, btnTodayContent);
+  });
+  todayContet.appendChild(todayContentTitle);
+  todayContet.appendChild(btnTodayContent);
   return todayContet;
 };
 

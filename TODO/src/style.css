@@ -13,28 +13,81 @@
 .bodyDiv {
   display: flex;
   flex-direction: row;
+  margin-top: 35px;
+  margin-left: 35px;
+  width: 100%;
+  height: 100%;
 }
 
 .rightDiv {
-  margin-left: 120px;
+  position: absolute;
+  right: 0;
+  left: 200px;
 }
-.btnInboxContent {
-  display: block;
-  margin: 30px;
-  background-color: blueviolet;
+.hidden {
+  display: none;
+}
+.mainDiv {
+  background-color: #11999e;
+
+  margin: 15px;
+  width: 100%;
+  height: 100%;
 }
 
-.mainDiv {
-  background-color: #eae2b7;
-}
-.inboxContent {
-  background-color: #ff1111;
+.rightDiv {
+  background-color: #e4f9f5;
+  display: flex;
+  justify-content: center;
   margin: 30px;
   padding: 30px;
   border-radius: 10px;
   border: 1px solid #eae2b7;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%),
+    0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
 }
-.rightDiv {
-  background-color: cadetblue;
+
+button {
+  background-color: #30e3ca;
+  color: white;
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.input-group {
+  font-size: 14px;
+  border-radius: 6px;
+  line-height: 1.5;
+  padding: 5px 10px;
+  transition: box-shadow 100ms ease-in, border 100ms ease-in,
+    background-color 100ms ease-in;
+  border: 2px solid #dee1e2;
+  color: rgb(14, 14, 16);
+  background: #cff5e7;
+  display: block;
+  height: 36px;
+}
+.input-group:hover {
+  border-color: #ccc;
+}
+.input-group:focus {
+  border-color: #9147ff;
+  background: #fff;
 }
